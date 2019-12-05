@@ -5,11 +5,12 @@
   <parent>
     <groupId>org.hitachivantara</groupId>
     <artifactId>third-party-bundle-wraps</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.0</version>
   </parent>
 
   <artifactId>cxf-rt-frontend-jaxrs-wrap</artifactId>
-
+  <!-- We are mirroring the wrapped version of cxf-rt-frontend-jaxrs -->
+  <version>3.3.1</version>
   <packaging>bundle</packaging>
 
   <name>Hitachi Vantara wrap of Apache CXF Runtime JAX-RS Frontend</name>
