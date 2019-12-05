@@ -27,6 +27,23 @@
     <tag>HEAD</tag>
   </scm>
 
+  <properties>
+    <maven-bundle-plugin.version>4.2.1</maven-bundle-plugin.version>
+  </properties>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.felix</groupId>
+          <artifactId>maven-bundle-plugin</artifactId>
+          <version>${maven-bundle-plugin.version}</version>
+          <extensions>true</extensions>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+
   <modules>
     <module>pax-logging-api-wrap</module>
     <module>cxf-rt-frontend-jaxrs-wrap</module>
