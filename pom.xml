@@ -43,6 +43,19 @@
       </plugins>
     </pluginManagement>
   </build>
+    
+  <distributionManagement>
+    <repository>
+      <id>pentaho.private.release.repo</id>
+      <name>Pentaho Private Release Repository</name>
+      <url>${pentaho.private.release.repo}</url>
+    </repository>
+    <snapshotRepository>
+      <id>pentaho.private.snapshot.repo</id>
+      <name>Pentaho Private Snapshot Repository</name>
+      <url>${pentaho.private.snapshot.repo}</url>
+    </snapshotRepository>
+  </distributionManagement>
 
   <modules>
     <module>pax-logging-api-wrap</module>
