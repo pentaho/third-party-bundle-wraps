@@ -11,7 +11,7 @@
 
   <artifactId>pax-logging-api-wrap</artifactId>
   <!-- We are mirroring the wrapped version of pax logging -->
-  <version>1.10.2</version>
+  <version>1.11.12</version>
   <packaging>bundle</packaging>
 
   <description>
@@ -23,7 +23,8 @@
   <properties>
     <!-- When eventually upgrading this version, take care of also verifying and updating if needed
          the manifest configuration bellow. -->
-    <pax-logging-api.version>1.10.2</pax-logging-api.version>
+    <pax-logging-api.version>1.11.12</pax-logging-api.version>
+    <log4j.version>2.17.0</log4j.version>
   </properties>
 
   <dependencies>
@@ -72,12 +73,12 @@
               org.apache.avalon.framework.logger;-split-package:=merge-first; version=4.3; provider=paxlogging,
               org.apache.juli.logging; version=5.5.28; provider=paxlogging,
               org.apache.juli.logging; version=6.0.18; provider=paxlogging,
-              org.apache.logging.log4j; version=2.8.1; provider=paxlogging,
-              org.apache.logging.log4j.message; version=2.8.1; provider=paxlogging,
-              org.apache.logging.log4j.simple; version=2.8.1; provider=paxlogging,
-              org.apache.logging.log4j.spi; version=2.8.1; provider=paxlogging,
-              org.apache.logging.log4j.status; version=2.8.1; provider=paxlogging,
-              org.apache.logging.log4j.util; version=2.8.1; provider=paxlogging,
+              org.apache.logging.log4j; version=${log4j.version}; provider=paxlogging,
+              org.apache.logging.log4j.message; version=${log4j.version}; provider=paxlogging,
+              org.apache.logging.log4j.simple; version=${log4j.version}; provider=paxlogging,
+              org.apache.logging.log4j.spi; version=${log4j.version}; provider=paxlogging,
+              org.apache.logging.log4j.status; version=${log4j.version}; provider=paxlogging,
+              org.apache.logging.log4j.util; version=${log4j.version}; provider=paxlogging,
               org.knopflerfish.service.log; version=1.1.0; provider=paxlogging,
               org.ops4j.pax.logging; version=${pax-logging-api.version}; provider=paxlogging,
               org.ops4j.pax.logging.avalon; version=${pax-logging-api.version}; provider=paxlogging,
