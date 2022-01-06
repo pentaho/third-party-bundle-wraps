@@ -10,7 +10,7 @@
 
   <artifactId>pax-logging-api-wrap</artifactId>
   <!-- We are mirroring the wrapped version of pax logging -->
-  <version>1.10.9</version>
+  <version>1.10.9-SNAPSHOT</version>
   <packaging>bundle</packaging>
 
   <description>
