@@ -4,7 +4,7 @@
 
   <groupId>org.hitachivantara</groupId>
   <artifactId>third-party-bundle-wraps</artifactId>
-  <version>1.0.2-SNAPSHOT</version>
+  <version>1.0.2</version>
 
   <packaging>pom</packaging>
 
@@ -23,7 +23,7 @@
   <scm>
     <developerConnection>scm:git:git@github.com:pentaho/third-party-bundle-wraps.git</developerConnection>
     <url>https://github.com/pentaho/third-party-bundle-wraps</url>
-    <tag>HEAD</tag>
+    <tag>third-party-bundle-wraps-1.0.2</tag>
   </scm>
 
   <properties>

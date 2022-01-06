@@ -5,12 +5,12 @@
   <parent>
     <groupId>org.hitachivantara</groupId>
     <artifactId>third-party-bundle-wraps</artifactId>
-    <version>1.0.2-SNAPSHOT</version>
+    <version>1.0.2</version>
   </parent>
 
   <artifactId>pax-logging-api-wrap</artifactId>
   <!-- We are mirroring the wrapped version of pax logging -->
-  <version>1.10.9-SNAPSHOT</version>
+  <version>1.10.9</version>
   <packaging>bundle</packaging>
 
   <description>
