@@ -5,12 +5,12 @@
   <parent>
     <groupId>org.hitachivantara</groupId>
     <artifactId>third-party-bundle-wraps</artifactId>
-    <version>1.0.4</version>
+    <version>1.0.5-SNAPSHOT</version>
   </parent>
 
   <artifactId>pax-logging-service-wrap</artifactId>
   <!-- We are mirroring the wrapped version of pax logging -->
-  <version>1.8.1</version>
+  <version>1.8.2-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>Hitachi Vantara wrap of OPS4J Pax Logging - Service</name>
