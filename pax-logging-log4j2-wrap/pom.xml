@@ -1,17 +1,16 @@
 <?xml version="1.0"?>
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
     <groupId>org.hitachivantara</groupId>
     <artifactId>third-party-bundle-wraps</artifactId>
-    <version>1.0.3-SNAPSHOT</version>
+    <version>1.0.3</version>
   </parent>
 
   <artifactId>pax-logging-log4j2-wrap</artifactId>
   <!-- We are mirroring the wrapped version of pax logging -->
-  <version>1.10.2-SNAPSHOT</version>
+  <version>1.10.2</version>
   <packaging>jar</packaging>
 
   <name>Hitachi Vantara wrap of OPS4J Pax Logging - Log4j v2</name>
@@ -56,13 +55,12 @@
                 <!-- Unzip the previously declared dependency removing some files -->
                 <unzip src="${org.ops4j.pax.logging:pax-logging-log4j2:jar}" dest="${custom.source.directory}">
                   <patternset>
-                    <exclude name="org/apache/logging/log4j/core/lookup/JndiLookup.class"/>
-                    <exclude name="META-INF/MANIFEST.MF"/>
+                    <exclude name="org/apache/logging/log4j/core/lookup/JndiLookup.class" />
+                    <exclude name="META-INF/MANIFEST.MF" />
                   </patternset>
                 </unzip>
                 <!-- Zip/repackage everything -->
-                <zip basedir="${custom.source.directory}"
-                     destfile="${project.build.directory}/${project.build.finalName}.jar"/>
+                <zip basedir="${custom.source.directory}" destfile="${project.build.directory}/${project.build.finalName}.jar" />
               </tasks>
             </configuration>
           </execution>
