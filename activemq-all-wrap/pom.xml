@@ -5,12 +5,12 @@
   <parent>
     <groupId>org.hitachivantara</groupId>
     <artifactId>third-party-bundle-wraps</artifactId>
-    <version>1.0.3</version>
+    <version>1.0.4-SNAPSHOT</version>
   </parent>
 
   <artifactId>activemq-all-wrap</artifactId>
   <!-- We are mirroring the wrapped version of pax logging -->
-  <version>5.15.11</version>
+  <version>5.15.12-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>Hitachi Vantara wrap of ActiveMQ :: All JAR bundle</name>
