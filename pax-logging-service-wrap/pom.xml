@@ -1,0 +1,133 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.hitachivantara</groupId>
+    <artifactId>third-party-bundle-wraps</artifactId>
+    <version>1.0.3-SNAPSHOT</version>
+  </parent>
+
+  <artifactId>pax-logging-service-wrap</artifactId>
+  <!-- We are mirroring the wrapped version of pax logging -->
+  <version>1.8.1</version>
+  <packaging>jar</packaging>
+
+  <name>Hitachi Vantara wrap of OPS4J Pax Logging - Service</name>
+  <description>
+    This OSGi bundle wraps org.ops4j.pax.logging/pax-logging-service bundle removing classes
+    org.apache.log4j.net.JMSAppender and org.apache.log4j.net.SocketServer (see CVE-2021-4104 and CVE-2019-17571)
+  </description>
+
+  <properties>
+    <pax-logging-service.version>1.8.1</pax-logging-service.version>
+    <custom.source.directory>${project.build.directory}/classes</custom.source.directory>
+  </properties>
+
+  <dependencies>
+    <!-- Master library -->
+    <dependency>
+      <groupId>org.ops4j.pax.logging</groupId>
+      <artifactId>pax-logging-service</artifactId>
+      <version>${pax-logging-service.version}</version>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <version>1.6</version>
+        <executions>
+          <execution>
+            <id>repack</id>
+            <phase>package</phase>
+            <goals>
+              <goal>run</goal>
+            </goals>
+            <configuration>
+              <tasks>
+                <!-- Unzip the previously declared dependency removing some files -->
+                <unzip src="${org.ops4j.pax.logging:pax-logging-service:jar}" dest="${custom.source.directory}">
+                  <patternset>
+                    <exclude name="org/apache/log4j/net/JMSAppender.class"/>
+                    <exclude name="org/apache/log4j/net/SocketServer.class"/>
+                    <exclude name="META-INF/MANIFEST.MF"/>
+                  </patternset>
+                </unzip>
+                <!-- Zip/repackage everything -->
+                <zip basedir="${custom.source.directory}"
+                     destfile="${project.build.directory}/${project.build.finalName}.jar"/>
+              </tasks>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.felix</groupId>
+        <artifactId>maven-bundle-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>bundle-manifest</id>
+            <phase>process-classes</phase>
+            <goals>
+              <goal>manifest</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <instructions>
+            <!--
+              Using inline=true. bnd tool FAQ (https://bnd.bndtools.org/chapters/920-faq.html) states:
+                "Bundle-ClassPath [...] creates unnecessary complexity, it is slower, and it is not necessary.
+                It will also not be compatible with techniques like PojoSR, something that the OSGi is looking
+                into standardizing. [...] If you really need to wrap one or more JARs, use the Include-Resource
+                instruction, it has an option to unroll a JAR resource [...]. This will copy all its contents in
+                the target JAR.
+            -->
+            <Embed-Dependency>pax-logging-service;inline=true</Embed-Dependency>
+
+            <Bundle-Name>OPS4J Pax Logging - Service (HV wrapped)</Bundle-Name>
+            <Bundle-SymbolicName>${project.groupId}.${project.artifactId}</Bundle-SymbolicName>
+            <Bundle-Version>${project.version}</Bundle-Version>
+            <Bundle-Activator>org.ops4j.pax.logging.service.internal.Activator</Bundle-Activator>
+
+            <Export-Package/>
+            <Import-Package>
+              com.ibm.uvm.tools;resolution:=optional,
+              com.sun.jdmk.comm;resolution:=optional,
+              javax.jmdns;resolution:=optional,
+              javax.jms;resolution:=optional,
+              javax.mail;resolution:=optional,
+              javax.mail.internet;resolution:=optional,
+              javax.management;resolution:=optional,
+              javax.naming;resolution:=optional,
+              javax.swing;resolution:=optional,
+              javax.swing.border;resolution:=optional,
+              javax.swing.event;resolution:=optional,
+              javax.swing.table;resolution:=optional,
+              javax.swing.text;resolution:=optional,
+              javax.swing.tree;resolution:=optional,
+              javax.xml.parsers,
+              org.knopflerfish.service.log;provider=paxlogging;version="[1.1.0,2.0.0)",
+              org.ops4j.pax.logging;version="[0.9.5,2.0.0)",
+              org.ops4j.pax.logging.spi;version="[0.9.5,2.0.0)",
+              org.osgi.framework;version="[1.0.0,2.0.0)",
+              org.osgi.framework.wiring;version="[1.0,2)",
+              org.osgi.service.cm;version="[1.0.0,2.0.0)",
+              org.osgi.service.event;resolution:=optional;version="[1.0.0,2.0.0)",
+              org.osgi.service.log;version="[1.3.0,2.0.0)",
+              org.osgi.util.tracker;version="[1.3.0,2.0.0)",
+              org.w3c.dom,
+              org.xml.sax,
+              org.xml.sax.helpers
+            </Import-Package>
+          </instructions>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>

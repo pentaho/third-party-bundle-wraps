@@ -66,6 +66,7 @@
   <modules>
     <module>pax-logging-api-wrap</module>
     <module>cxf-rt-frontend-jaxrs-wrap</module>
+    <module>pax-logging-service-wrap</module>
   </modules>
 
 </project>
