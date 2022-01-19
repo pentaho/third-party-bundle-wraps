@@ -1,17 +1,16 @@
 <?xml version="1.0"?>
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
     <groupId>org.hitachivantara</groupId>
     <artifactId>third-party-bundle-wraps</artifactId>
-    <version>1.0.4-SNAPSHOT</version>
+    <version>1.0.4</version>
   </parent>
 
   <artifactId>pax-logging-service-wrap</artifactId>
   <!-- We are mirroring the wrapped version of pax logging -->
-  <version>1.8.1-SNAPSHOT</version>
+  <version>1.8.1</version>
   <packaging>jar</packaging>
 
   <name>Hitachi Vantara wrap of OPS4J Pax Logging - Service</name>
@@ -52,14 +51,13 @@
                 <!-- Unzip the previously declared dependency removing some files -->
                 <unzip src="${org.ops4j.pax.logging:pax-logging-service:jar}" dest="${custom.source.directory}">
                   <patternset>
-                    <exclude name="org/apache/log4j/net/JMSAppender.class"/>
-                    <exclude name="org/apache/log4j/net/SocketServer.class"/>
-                    <exclude name="META-INF/MANIFEST.MF"/>
+                    <exclude name="org/apache/log4j/net/JMSAppender.class" />
+                    <exclude name="org/apache/log4j/net/SocketServer.class" />
+                    <exclude name="META-INF/MANIFEST.MF" />
                   </patternset>
                 </unzip>
                 <!-- Zip/repackage everything -->
-                <zip basedir="${custom.source.directory}"
-                     destfile="${project.build.directory}/${project.build.finalName}.jar"/>
+                <zip basedir="${custom.source.directory}" destfile="${project.build.directory}/${project.build.finalName}.jar" />
               </tasks>
             </configuration>
           </execution>
@@ -95,7 +93,7 @@
             <Bundle-Version>${project.version}</Bundle-Version>
             <Bundle-Activator>org.ops4j.pax.logging.service.internal.Activator</Bundle-Activator>
 
-            <Export-Package/>
+            <Export-Package />
             <Import-Package>
               com.ibm.uvm.tools;resolution:=optional,
               com.sun.jdmk.comm;resolution:=optional,

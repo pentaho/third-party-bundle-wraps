@@ -1,17 +1,16 @@
 <?xml version="1.0"?>
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
     <groupId>org.hitachivantara</groupId>
     <artifactId>third-party-bundle-wraps</artifactId>
-    <version>1.0.4-SNAPSHOT</version>
+    <version>1.0.4</version>
   </parent>
 
   <artifactId>activemq-all-wrap</artifactId>
   <!-- We are mirroring the wrapped version of activemq-all -->
-  <version>5.10.1-SNAPSHOT</version>
+  <version>5.10.1</version>
   <packaging>jar</packaging>
 
   <name>Hitachi Vantara wrap of ActiveMQ :: All JAR bundle</name>
@@ -56,9 +55,9 @@
                 <!-- Unzip the previously declared dependency removing some files -->
                 <unzip src="${org.apache.activemq:activemq-all:jar}" dest="${custom.source.directory}">
                   <patternset>
-                    <exclude name="org/apache/log4j/net/JMSAppender.class"/>
-                    <exclude name="org/apache/log4j/net/SocketServer.class"/>
-                    <exclude name="META-INF/MANIFEST.MF"/>
+                    <exclude name="org/apache/log4j/net/JMSAppender.class" />
+                    <exclude name="org/apache/log4j/net/SocketServer.class" />
+                    <exclude name="META-INF/MANIFEST.MF" />
                   </patternset>
                 </unzip>
                 <!-- Copy our "adjustments"  -->
@@ -66,8 +65,7 @@
                   <fileset dir="${basedir}/src/main/resources" includes="**/*" />
                 </copy>
                 <!-- Zip/repackage everything -->
-                <zip basedir="${custom.source.directory}"
-                     destfile="${project.build.directory}/${project.build.finalName}.jar"/>
+                <zip basedir="${custom.source.directory}" destfile="${project.build.directory}/${project.build.finalName}.jar" />
               </tasks>
             </configuration>
           </execution>
