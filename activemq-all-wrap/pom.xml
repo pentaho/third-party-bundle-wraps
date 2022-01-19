@@ -11,7 +11,7 @@
 
   <artifactId>activemq-all-wrap</artifactId>
   <!-- We are mirroring the wrapped version of pax logging -->
-  <version>5.15.11</version>
+  <version>5.15.11-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>Hitachi Vantara wrap of ActiveMQ :: All JAR bundle</name>
