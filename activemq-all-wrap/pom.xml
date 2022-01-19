@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.hitachivantara</groupId>
+    <artifactId>third-party-bundle-wraps</artifactId>
+    <version>1.0.3-SNAPSHOT</version>
+  </parent>
+
+  <artifactId>activemq-all-wrap</artifactId>
+  <!-- We are mirroring the wrapped version of pax logging -->
+  <version>5.15.11</version>
+  <packaging>jar</packaging>
+
+  <name>Hitachi Vantara wrap of ActiveMQ :: All JAR bundle</name>
+  <description>
+    The original org.apache.activemq/activemq-all jar includes code from log4j 1.2.17 which has some
+    vulnerabilities.
+    This jar wraps org.apache.activemq/activemq-all jar removing classes org.apache.log4j.net.JMSAppender
+    and org.apache.log4j.net.SocketServer (see CVE-2021-4104 and CVE-2019-17571)
+  </description>
+
+  <properties>
+    <!-- When eventually upgrading this version, take care of also verifying and updating if needed
+       the properties and manifest configuration bellow. -->
+    <activemq-all.version>5.15.11</activemq-all.version>
+    <custom.source.directory>${project.build.directory}/classes</custom.source.directory>
+  </properties>
+
+  <dependencies>
+    <!-- Master library -->
+    <dependency>
+      <groupId>org.apache.activemq</groupId>
+      <artifactId>activemq-all</artifactId>
+      <version>${activemq-all.version}</version>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <version>1.6</version>
+        <executions>
+          <execution>
+            <id>repack</id>
+            <phase>package</phase>
+            <goals>
+              <goal>run</goal>
+            </goals>
+            <configuration>
+              <tasks>
+                <!-- Unzip the previously declared dependency removing some files -->
+                <unzip src="${org.apache.activemq:activemq-all:jar}" dest="${custom.source.directory}">
+                  <patternset>
+                    <exclude name="org/apache/log4j/net/JMSAppender.class"/>
+                    <exclude name="org/apache/log4j/net/SocketServer.class"/>
+                    <exclude name="META-INF/MANIFEST.MF"/>
+                  </patternset>
+                </unzip>
+                <!-- Copy our "adjustments"  -->
+                <copy todir="${custom.source.directory}" overwrite="true">
+                  <fileset dir="${basedir}/src/main/resources" includes="**/*" />
+                </copy>
+                <!-- Zip/repackage everything -->
+                <zip basedir="${custom.source.directory}"
+                     destfile="${project.build.directory}/${project.build.finalName}.jar"/>
+              </tasks>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>

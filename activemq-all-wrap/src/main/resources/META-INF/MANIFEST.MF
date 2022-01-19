@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Implementation-Vendor-Id: org.hitachivantara
+Implementation-Vendor: Hitachi Vantara
+Implementation-Title: ActiveMQ :: All JAR bundle (HV wrapped)
+Implementation-Version: 5.15.11
+Specification-Vendor: The Apache Software Foundation
+Specification-Title: ActiveMQ :: All JAR bundle
+Main-Class: org.apache.activemq.console.command.ShellCommand
+Specification-Version: 5.15.11
