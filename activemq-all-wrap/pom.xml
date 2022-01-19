@@ -6,12 +6,12 @@
   <parent>
     <groupId>org.hitachivantara</groupId>
     <artifactId>third-party-bundle-wraps</artifactId>
-    <version>1.0.3-SNAPSHOT</version>
+    <version>1.0.4-SNAPSHOT</version>
   </parent>
 
   <artifactId>activemq-all-wrap</artifactId>
   <!-- We are mirroring the wrapped version of activemq-all -->
-  <version>5.10.1</version>
+  <version>5.10.1-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>Hitachi Vantara wrap of ActiveMQ :: All JAR bundle</name>
