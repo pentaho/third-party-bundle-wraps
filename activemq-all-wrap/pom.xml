@@ -17,8 +17,8 @@
   <description>
     The original org.apache.activemq/activemq-all jar includes code from log4j 1.2.17 which has some
     vulnerabilities.
-    This jar wraps org.apache.activemq/activemq-all jar removing classes org.apache.log4j.net.JMSAppender
-    and org.apache.log4j.net.SocketServer (see CVE-2021-4104 and CVE-2019-17571).
+    This jar wraps org.apache.activemq/activemq-all jar removing vulnerable classes and packages. 
+    See CVE-2019-17571, CVE-2021-4104, CVE-2022-23302, CVE-2022-23305 and CVE-2022-23307.
   </description>
 
   <properties>
@@ -57,6 +57,9 @@
                   <patternset>
                     <exclude name="org/apache/log4j/net/JMSAppender.class" />
                     <exclude name="org/apache/log4j/net/SocketServer.class" />
+                    <exclude name="org/apache/log4j/net/JMSSink.class" />
+                    <exclude name="org/apache/log4j/jdbc/" />
+                    <exclude name="org/apache/log4j/chainsaw/" />
                     <exclude name="META-INF/MANIFEST.MF" />
                   </patternset>
                 </unzip>
