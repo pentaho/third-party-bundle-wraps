@@ -5,12 +5,12 @@
   <parent>
     <groupId>org.hitachivantara</groupId>
     <artifactId>third-party-bundle-wraps</artifactId>
-    <version>1.0.4-SNAPSHOT</version>
+    <version>1.0.5-SNAPSHOT</version>
   </parent>
 
   <artifactId>activemq-all-wrap</artifactId>
   <!-- We are mirroring the wrapped version of pax logging -->
-  <version>5.15.12-SNAPSHOT</version>
+  <version>5.16.7-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>Hitachi Vantara wrap of ActiveMQ :: All JAR bundle</name>
@@ -24,7 +24,7 @@
   <properties>
     <!-- When eventually upgrading this version, take care of also verifying and updating if needed
        the properties and manifest configuration bellow. -->
-    <activemq-all.version>5.15.11</activemq-all.version>
+    <activemq-all.version>5.16.7</activemq-all.version>
     <custom.source.directory>${project.build.directory}/classes</custom.source.directory>
   </properties>
 
@@ -57,6 +57,7 @@
                   <patternset>
                     <exclude name="org/apache/log4j/net/JMSAppender.class" />
                     <exclude name="org/apache/log4j/net/SocketServer.class" />
+                    <exclude name="org/apache/log4j/net/SocketNode.class" />
                     <exclude name="org/apache/log4j/net/JMSSink.class" />
                     <exclude name="org/apache/log4j/jdbc/" />
                     <exclude name="org/apache/log4j/chainsaw/" />

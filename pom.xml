@@ -4,7 +4,7 @@
 
   <groupId>org.hitachivantara</groupId>
   <artifactId>third-party-bundle-wraps</artifactId>
-  <version>1.0.4-SNAPSHOT</version>
+  <version>1.0.5-SNAPSHOT</version>
 
   <packaging>pom</packaging>
 
@@ -65,7 +65,6 @@
 
   <modules>
     <module>activemq-all-wrap</module>
-    <module>pax-logging-log4j2-wrap</module>
   </modules>
 
 </project>
