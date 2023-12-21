@@ -28,6 +28,8 @@
 
   <properties>
     <maven-bundle-plugin.version>4.2.1</maven-bundle-plugin.version>
+    <pentaho.private.release.repo></pentaho.private.release.repo>
+    <pentaho.private.snapshot.repo></pentaho.private.snapshot.repo>
   </properties>
 
   <build>
