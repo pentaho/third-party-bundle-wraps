@@ -4,7 +4,7 @@
 
   <groupId>org.hitachivantara</groupId>
   <artifactId>third-party-bundle-wraps</artifactId>
-  <version>1.0.5-SNAPSHOT</version>
+  <version>1.0.5</version>
 
   <packaging>pom</packaging>
 
@@ -28,8 +28,8 @@
 
   <properties>
     <maven-bundle-plugin.version>4.2.1</maven-bundle-plugin.version>
-    <pentaho.private.release.repo></pentaho.private.release.repo>
-    <pentaho.private.snapshot.repo></pentaho.private.snapshot.repo>
+    <pentaho.private.release.repo>https://repo.orl.eng.hitachivantara.com/artifactory/pntprv-mvn-release-orl/</pentaho.private.release.repo>
+    <pentaho.private.snapshot.repo>https://repo.orl.eng.hitachivantara.com/artifactory/pntprv-mvn-snapshot-orl/</pentaho.private.snapshot.repo>
   </properties>
 
   <build>
