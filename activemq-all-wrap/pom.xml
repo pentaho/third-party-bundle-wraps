@@ -57,6 +57,7 @@
                   <patternset>
                     <exclude name="org/apache/log4j/net/JMSAppender.class" />
                     <exclude name="org/apache/log4j/net/SocketServer.class" />
+                    <exclude name="org/apache/log4j/net/SocketNode.class" />
                     <exclude name="org/apache/log4j/net/JMSSink.class" />
                     <exclude name="org/apache/log4j/jdbc/" />
                     <exclude name="org/apache/log4j/chainsaw/" />
