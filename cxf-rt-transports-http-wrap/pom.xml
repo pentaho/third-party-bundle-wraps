@@ -1,0 +1,200 @@
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.hitachivantara</groupId>
+    <artifactId>third-party-bundle-wraps</artifactId>
+    <version>1.0.3-SNAPSHOT</version>
+  </parent>
+
+  <artifactId>cxf-rt-transports-http-wrap</artifactId>
+  <!-- We are mirroring the wrapped version of cxf-rt-frontend-jaxrs -->
+  <version>3.6.4</version>
+  <packaging>bundle</packaging>
+
+  <name>Hitachi Vantara wrap of Apache CXF Runtime HTTP Transport</name>
+  <description>Wrap of Apache CXF Runtime HTTP Transport to remove optial resolution of some imports.</description>
+
+  <!--
+  Property values and configurations taken from:
+    https://github.com/apache/cxf/blob/cxf-3.3.1/rt/frontend/jaxrs/pom.xml
+     and
+    https://github.com/apache/cxf/blob/cxf-3.3.1/parent/pom.xml
+
+  Changed the javax.ws.rs* import range from [1.0,3) to [2.0,3).
+
+  Recheck and update them when upgrading the cxf-rt-frontend-jaxrs version.
+  -->
+
+  <properties>
+    <cxf-rt-transports-http.version>3.6.4</cxf-rt-transports-http.version>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.apache.cxf</groupId>
+      <artifactId>cxf-rt-transports-http</artifactId>
+      <version>${cxf-rt-transports-http.version}</version>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.felix</groupId>
+        <artifactId>maven-bundle-plugin</artifactId>
+
+        <configuration>
+          <obrRepository>NONE</obrRepository>
+          <niceManifest>true</niceManifest>
+
+          <instructions>
+            <Embed-Dependency>cxf-rt-transports-http;inline=true</Embed-Dependency>
+            <_failok>true</_failok>
+            <_nouses>true</_nouses>
+            <_versionpolicy>[$(version;==;$(@)),$(version;+;$(@)))</_versionpolicy>
+
+            <Automatic-Module-Name>${project.groupId}.${project.artifactId}</Automatic-Module-Name>
+            <Bundle-ActivationPolicy>lazy</Bundle-ActivationPolicy>
+            <Bundle-Activator>org.apache.cxf.transport.http.osgi.HTTPTransportActivator</Bundle-Activator>
+            <Bundle-Description>Apache CXF Runtime HTTP Transport (HV wrapped)</Bundle-Description>
+            <Bundle-DocURL>http://cxf.apache.org</Bundle-DocURL>
+            <Bundle-Name>Apache CXF Runtime HTTP Transport (HV wrapped)</Bundle-Name>
+            <Bundle-SymbolicName>${project.groupId}.${project.artifactId}</Bundle-SymbolicName>
+            <Bundle-Version>${project.version}</Bundle-Version>
+            <Implementation-Vendor>The Apache Software Foundation</Implementation-Vendor>
+            <Implementation-Vendor-Id>org.apache</Implementation-Vendor-Id>
+            <Implementation-Version>${cxf-rt-transports-http.version}</Implementation-Version>
+            <Require-Capability>osgi.ee;filter:="(&amp;(osgi.ee=JavaSE)(version=11))"</Require-Capability>
+            <Specification-Vendor>The Apache Software Foundation</Specification-Vendor>
+            <Specification-Version>${cxf-rt-transports-http.version}</Specification-Version>
+
+            <Export-Package>
+              org.apache.cxf.transports.http.configuration;version="${cxf-rt-transports-http.version}",
+              org.apache.cxf.transport.http;version="${cxf-rt-transports-http.version}",
+              org.apache.cxf.transport.http.auth;version="${cxf-rt-transports-http.version}",
+              org.apache.cxf.transport.http.blueprint;version="${cxf-rt-transports-http.version}",
+              org.apache.cxf.transport.http.osgi;version="${cxf-rt-transports-http.version}",
+              org.apache.cxf.transport.http.policy;version="${cxf-rt-transports-http.version}",
+              org.apache.cxf.transport.http.policy.impl;version="${cxf-rt-transports-http.version}",
+              org.apache.cxf.transport.http.spring;version="${cxf-rt-transports-http.version}",
+              org.apache.cxf.transport.https;version="${cxf-rt-transports-http.version}",
+              org.apache.cxf.transport.https.httpclient;version="${cxf-rt-transports-http.version}",
+              org.apache.cxf.transport.servlet;version="${cxf-rt-transports-http.version}",
+              org.apache.cxf.transport.servlet.blueprint;version="${cxf-rt-transports-http.version}",
+              org.apache.cxf.transport.servlet.servicelist;version="${cxf-rt-transports-http.version}"
+            </Export-Package>
+
+            <Import-Package>
+              javax.servlet;version="[0,4.1)",
+              javax.servlet.http;version="[0,4.1)",
+              org.apache.aries.blueprint;version="[1.0,2)";resolution:=optional,
+              org.apache.aries.blueprint.mutable;version="[1.0,2)";resolution:=optional,
+              org.springframework.beans.factory.support;resolution:=optional;version="[3.1,6)",
+              org.springframework.beans.factory.xml;resolution:=optional;version="[3.1,6)",
+              org.springframework.context;resolution:=optional;version="[3.1,6)",
+              org.springframework.context.event;resolution:=optional;version="[3.1,6)",
+              org.springframework.context.support;resolution:=optional;version="[3.1,6)",
+              org.springframework.core.io;resolution:=optional;version="[3.1,6)",
+              org.springframework.util;resolution:=optional;version="[3.1,6)",
+              org.springframework.web.context;resolution:=optional;version="[3.1,6)",
+              org.springframework.web.context.support;resolution:=optional;version="[3.1,6)",
+              org.osgi.service.http;version="[1.2,2)",
+              javax.xml.bind;version="[0,3)";resolution:=optional,
+              javax.xml.bind.annotation;version="[0,3)";resolution:=optional,
+              javax.activation;version="[0,2)",
+              java.beans,
+              java.io,
+              java.lang,
+              java.lang.invoke,
+              java.lang.ref,
+              java.lang.reflect,
+              java.net,
+              java.net.http,
+              java.nio,
+              java.nio.channels,
+              java.nio.charset,
+              java.nio.file,
+              java.security,
+              java.security.cert,
+              java.text,
+              java.time,
+              java.util,
+              java.util.concurrent,
+              java.util.concurrent.locks,
+              java.util.function,
+              java.util.logging,
+              java.util.regex,
+              java.util.stream,
+              javax.naming,
+              javax.naming.directory,
+              javax.naming.ldap,javax.net.ssl,
+              javax.security.auth,
+              javax.security.auth.callback,
+              javax.security.auth.login,
+              javax.security.auth.x500,
+              javax.security.cert,
+              javax.wsdl;resolution:=optional,
+              javax.wsdl.extensions;resolution:=optional,
+              javax.xml.namespace,org.apache.cxf;version="[3.6,4)",
+              org.apache.cxf.attachment;version="[3.6,4)",
+              org.apache.cxf.bus.blueprint;version="[3.6,4)",
+              org.apache.cxf.common.classloader;version="[3.6,4)",
+              org.apache.cxf.common.i18n;version="[3.6,4)",
+              org.apache.cxf.common.injection;version="[3.6,4)",
+              org.apache.cxf.common.logging;version="[3.6,4)",
+              org.apache.cxf.common.util;version="[3.6,4)",
+              org.apache.cxf.configuration;version="[3.6,4)",
+              org.apache.cxf.configuration.blueprint;version="[3.6,4)",
+              org.apache.cxf.configuration.jsse;version="[3.6,4)",
+              org.apache.cxf.configuration.security;version="[3.6,4)",
+              org.apache.cxf.configuration.spring;version="[3.6,4)",
+              org.apache.cxf.continuations;version="[3.6,4)",
+              org.apache.cxf.endpoint;version="[3.6,4)",
+              org.apache.cxf.feature;version="[3.6,4)",
+              org.apache.cxf.helpers;version="[3.6,4)",
+              org.apache.cxf.interceptor;version="[3.6,4)",
+              org.apache.cxf.interceptor.security;version="[3.6,4)",
+              org.apache.cxf.io;version="[3.6,4)",
+              org.apache.cxf.message;version="[3.6,4)",
+              org.apache.cxf.phase;version="[3.6,4)",
+              org.apache.cxf.policy;version="[3.6,4)",
+              org.apache.cxf.resource;version="[3.6,4)",
+              org.apache.cxf.security;version="[3.6,4)",
+              org.apache.cxf.security.transport;version="[3.6,4)",
+              org.apache.cxf.service;version="[3.6,4)",
+              org.apache.cxf.service.model;version="[3.6,4)",
+              org.apache.cxf.transport;version="[3.6,4)",
+              org.apache.cxf.transport.http,
+              org.apache.cxf.transport.http.auth,
+              org.apache.cxf.transport.http.blueprint,
+              org.apache.cxf.transport.http.policy.impl,
+              org.apache.cxf.transport.https,
+              org.apache.cxf.transport.https.httpclient,
+              org.apache.cxf.transport.servlet,
+              org.apache.cxf.transports.http.configuration,
+              org.apache.cxf.version;version="[3.6,4)",
+              org.apache.cxf.workqueue;version="[3.6,4)",
+              org.apache.cxf.ws.addressing;version="[3.6,4)",
+              org.apache.cxf.ws.policy;version="[3.6,4)";resolution:=optional,
+              org.apache.cxf.ws.policy.builder.jaxb;version="[3.6,4)";resolution:=optional,
+              org.apache.cxf.wsdl;version="[3.6,4)";resolution:=optional,
+              org.apache.cxf.wsdl.http;version="[3.6,4)",
+              org.apache.neethi;version="[3.2,4)";resolution:=optional,
+              org.ietf.jgss,org.osgi.framework;version="[1.8,2)",
+              org.osgi.service.blueprint.container;version="[1.0,2)";resolution:=optional,
+              org.osgi.service.blueprint.reflect;version="[1.0,2)";resolution:=optional,
+              org.osgi.service.cm;version="[1.5,2)";resolution:=optional,
+              org.osgi.util.tracker;version="[1.5,2)",
+              org.w3c.dom,
+              javax.net,
+              com.sun.activation.registries;resolution:=optional;version="[1.2,2)"
+            </Import-Package>
+
+          </instructions>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>
