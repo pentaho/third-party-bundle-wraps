@@ -16,12 +16,12 @@
   <parent>
     <groupId>org.hitachivantara</groupId>
     <artifactId>third-party-bundle-wraps</artifactId>
-    <version>1.0.3-SNAPSHOT</version>
+    <version>1.0.4-SNAPSHOT</version>
   </parent>
 
   <artifactId>cxf-rt-frontend-jaxrs-wrap</artifactId>
   <!-- We are mirroring the wrapped version of cxf-rt-frontend-jaxrs -->
-  <version>3.6.8</version>
+  <version>3.6.12</version>
   <packaging>bundle</packaging>
 
   <name>Hitachi Vantara wrap of Apache CXF Runtime JAX-RS Frontend</name>
@@ -41,7 +41,7 @@
   <properties>
     <!-- When eventually upgrading this version, take care of also verifying and updating if needed
        the properties and manifest configuration bellow. -->
-    <cxf-rt-frontend-jaxrs.version>3.6.8</cxf-rt-frontend-jaxrs.version>
+    <cxf-rt-frontend-jaxrs.version>3.6.12</cxf-rt-frontend-jaxrs.version>
 
     <cxf.osgi.version.clean>${cxf-rt-frontend-jaxrs.version}</cxf.osgi.version.clean>
 
