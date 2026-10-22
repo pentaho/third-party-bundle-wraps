@@ -39,6 +39,7 @@
   -->
 
   <properties>
+    <cxf.version>3.6.13</cxf.version>
     <revision>${cxf.version}-pentaho-1</revision>
     <cxf-rt-transports-http.version>${cxf.version}</cxf-rt-transports-http.version>
   </properties>
