@@ -39,6 +39,7 @@
   -->
 
   <properties>
+    <cxf.version>3.6.13</cxf.version>
     <revision>${cxf.version}-pentaho-1</revision>
 
     <!-- When eventually upgrading this version, take care of also verifying and updating if needed
