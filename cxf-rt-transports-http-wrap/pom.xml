@@ -21,7 +21,7 @@
 
   <artifactId>cxf-rt-transports-http-wrap</artifactId>
   <!-- We are mirroring the wrapped version of cxf-rt-frontend-jaxrs -->
-  <version>3.6.12</version>
+  <version>3.6.13</version>
   <packaging>bundle</packaging>
 
   <name>Hitachi Vantara wrap of Apache CXF Runtime HTTP Transport</name>
@@ -39,7 +39,7 @@
   -->
 
   <properties>
-    <cxf-rt-transports-http.version>3.6.12</cxf-rt-transports-http.version>
+    <cxf-rt-transports-http.version>3.6.13</cxf-rt-transports-http.version>
   </properties>
 
   <dependencies>
