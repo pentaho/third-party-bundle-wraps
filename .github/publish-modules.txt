@@ -1,0 +1,3 @@
+# Maven module paths eligible for release publishing.
+cxf-rt-frontend-jaxrs-wrap
+cxf-rt-transports-http-wrap

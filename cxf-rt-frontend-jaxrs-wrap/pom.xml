@@ -21,7 +21,7 @@
 
   <artifactId>cxf-rt-frontend-jaxrs-wrap</artifactId>
   <!-- We are mirroring the wrapped version of cxf-rt-frontend-jaxrs -->
-  <version>3.6.13</version>
+  <version>${revision}</version>
   <packaging>bundle</packaging>
 
   <name>Hitachi Vantara wrap of Apache CXF Runtime JAX-RS Frontend</name>
@@ -39,9 +39,11 @@
   -->
 
   <properties>
+    <revision>${cxf.version}-pentaho-1</revision>
+
     <!-- When eventually upgrading this version, take care of also verifying and updating if needed
        the properties and manifest configuration bellow. -->
-    <cxf-rt-frontend-jaxrs.version>3.6.13</cxf-rt-frontend-jaxrs.version>
+    <cxf-rt-frontend-jaxrs.version>${cxf.version}</cxf-rt-frontend-jaxrs.version>
 
     <cxf.osgi.version.clean>${cxf-rt-frontend-jaxrs.version}</cxf.osgi.version.clean>
 
