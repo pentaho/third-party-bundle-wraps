@@ -21,18 +21,13 @@ permissions:
   contents: write
 
 env:
-  ARTIFACTORY_HOST: ${{ vars.ARTIFACTORY_HOST }}
-  ARTIFACTORY_BASE_URL: ${ARTIFACTORY_HOST}/artifactory
-
-  RESOLVE_REPO_MIRROR: https://${ARTIFACTORY_HOST}/artifactory/pnt-mvn
+  RESOLVE_REPO_MIRROR: https://${{ vars.ARTIFACTORY_HOST }}/artifactory/pnt-mvn
 
   NEXUS_DEPLOY_USER: ${{ secrets.PENTAHO_CICD_ONE_USER }}
   NEXUS_DEPLOY_PASSWORD: ${{ secrets.PENTAHO_CICD_ONE_KEY }}
 
-  PUBLIC_RELEASE_REPO: pntpub-maven-release
-  PUBLIC_RELEASE_REPO_URL: ${ARTIFACTORY_BASE_URL}/${PUBLIC_RELEASE_REPO}
-  PRIVATE_RELEASE_REPO: pntprv-maven-release
-  PRIVATE_RELEASE_REPO_URL: ${ARTIFACTORY_BASE_URL}/${PRIVATE_RELEASE_REPO}
+  PUBLIC_RELEASE_REPO_URL: https://${{ vars.ARTIFACTORY_HOST }}/artifactory/pntpub-maven-release
+  PRIVATE_RELEASE_REPO_URL: https://${{ vars.ARTIFACTORY_HOST }}/artifactory/pntprv-maven-release
 
 concurrency:
   group: publish-third-party-bundle-wraps
