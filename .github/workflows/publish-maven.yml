@@ -67,7 +67,7 @@ jobs:
         id: publish-modules
         shell: bash
         env:
-          CHANGED_MODULES: ${{ steps.change-detection.outputs.changed_modules }}
+          CHANGED_MODULES: ${{ inputs.modules || steps.change-detection.outputs.changed_modules }}
           DRY_RUN: ${{ inputs.dry_run }}
           DRY_RUN_MODULES: ${{ inputs.modules }}
         run: |
